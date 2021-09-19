@@ -12,11 +12,13 @@ printf "%s" "$4" >$TEMP_SSH_PRIVATE_KEY_FILE
 # avoid Permissions too open
 chmod 600 $TEMP_SSH_PRIVATE_KEY_FILE
 
-printf "$7"
+if test $7 = "true"; then
+  echo "Connection via sftp protocol only, skip the command to create a directory"
+else
+  echo 'ssh start'
 
-echo 'ssh start'
-
-ssh -o StrictHostKeyChecking=no -p $3 -i $TEMP_SSH_PRIVATE_KEY_FILE $1@$2 mkdir -p $6
+  ssh -o StrictHostKeyChecking=no -p $3 -i $TEMP_SSH_PRIVATE_KEY_FILE $1@$2 mkdir -p $6
+fi
 
 echo 'sftp start'
 # create a temporary file containing sftp commands
