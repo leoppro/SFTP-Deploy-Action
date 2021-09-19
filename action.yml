@@ -43,6 +43,7 @@ runs:
     - ${{ inputs.ssh_private_key }}
     - ${{ inputs.local_path }}
     - ${{ inputs.remote_path }}
+    - ${{ inputs.sftp_only }}
     - ${{ inputs.args }}
 
 branding:
